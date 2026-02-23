@@ -1,0 +1,72 @@
+13.124.22.203
+
+
+EC2 login (in powershell)
+ssh -i C:\Users\wsp\desktop\Web\web_plasma_simul\plasma-key.pem ubuntu@13.124.22.203
+
+EC2로 올리기
+scp -i C:\Users\wsp\desktop\Web\web_plasma_simul\plasma-key.pem `
+    -r frontend `
+    ubuntu@13.124.22.203:/home/ubuntu/web_plasma_simul/
+
+
+scp -i C:\Users\wsp\desktop\Web\web_plasma_simul\plasma-key.pem `
+    -r frontend `
+    ubuntu@13.124.22.203:/home/ubuntu/web_plasma_simul/
+
+
+scp -i "C:\Users\wsp\desktop\Web\web_plasma_simul\plasma-key.pem" `
+    -r "C:\Users\wsp\desktop\Web\web_plasma_simul\frontend\dist" `
+    ubuntu@13.124.22.203:/tmp/plasmaccp_dist
+
+
+EC2에서 Container 실행
+docker run -d \
+  --name plasma-web-simul \
+  --restart unless-stopped \
+  -p 8000:8000 \
+  plasma-web-simul
+
+
+ns-235.awsdns-29.com
+ns-2002.awsdns-58.co.uk
+ns-1112.awsdns-11.org
+ns-700.awsdns-23.net
+
+
+Frotnend 배포
+
+1. Local 에서 Forntend 폴더경로까지 들어감( PS )
+2. dist.zip 생성
+cd C:\Users\wsp\desktop\web\web_plasma_simul\frontend
+Compress-Archive -Path .\dist\* -DestinationPath .\dist.zip -Force
+
+3. dist.zip 업로드
+scp -i "C:\Users\wsp\desktop\web\web_plasma_simul\plasma-key.pem" `
+  .\dist.zip ubuntu@13.124.22.203:/tmp/plasmaccp_dist.zip
+
+4. EC 에서 zip 해제 + 검증 ( EC )
+sudo rm -rf /tmp/plasmaccp_dist
+sudo mkdir -p /tmp/plasmaccp_dist
+sudo unzip -q /tmp/plasmaccp_dist.zip -d /tmp/plasmaccp_dist
+
+test -f /tmp/plasmaccp_dist/index.html && echo "OK index.html" || (echo "FAIL index.html missing" && exit 1)
+test -d /tmp/plasmaccp_dist/assets && echo "OK assets dir" || (echo "FAIL assets missing" && exit 1)
+
+5. 원자적 교체 + 백업 ( EC )
+
+ts=$(date +%Y%m%d_%H%M%S)
+
+if [ -d /var/www/plasmaccp/dist ]; then
+  sudo mv /var/www/plasmaccp/dist /var/www/plasmaccp/dist.bak.$ts
+fi
+
+sudo mv /tmp/plasmaccp_dist /var/www/plasmaccp/dist
+sudo chown -R root:root /var/www/plasmaccp/dist
+
+sudo nginx -t && sudo systemctl reload nginx
+
+6. 배포 후 검증 ( EC )
+
+curl -I http://127.0.0.1
+curl -I https://127.0.0.1 -k
