@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://plasmaccp.com/sitemap.xml
+Host: plasmaccp.com

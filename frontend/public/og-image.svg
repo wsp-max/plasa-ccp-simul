@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="PlasmaCCP Preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f3448"/>
+      <stop offset="60%" stop-color="#17678e"/>
+      <stop offset="100%" stop-color="#0d2b3c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.2" cy="0.2" r="0.8">
+      <stop offset="0%" stop-color="#ef8a12" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#ef8a12" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(86,84)">
+    <rect width="1028" height="462" rx="28" fill="#ffffff" fill-opacity="0.08" stroke="#d6edf9" stroke-opacity="0.28"/>
+    <text x="56" y="122" fill="#f5fbff" font-size="62" font-family="Barlow,Segoe UI,Arial,sans-serif" font-weight="700">PlasmaCCP</text>
+    <text x="56" y="182" fill="#d4ebf8" font-size="34" font-family="Barlow,Segoe UI,Arial,sans-serif">2D RF CCP Chamber Simulator</text>
+    <text x="56" y="244" fill="#f8c07f" font-size="30" font-family="IBM Plex Mono,Consolas,monospace">Simulator + Compare + Theory</text>
+    <text x="56" y="302" fill="#cfe5f3" font-size="28" font-family="Barlow,Segoe UI,Arial,sans-serif">Geometry editing | E-Field | ne | Power Absorption Density | Sheath</text>
+    <g transform="translate(650,110)">
+      <rect x="0" y="0" width="310" height="220" rx="18" fill="#e9f6ff" fill-opacity="0.18"/>
+      <circle cx="155" cy="110" r="72" fill="none" stroke="#ef8a12" stroke-width="8"/>
+      <path d="M72 110h166" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="72" cy="110" r="10" fill="#b8e2f6"/>
+      <circle cx="238" cy="110" r="10" fill="#b8e2f6"/>
+    </g>
+  </g>
+</svg>

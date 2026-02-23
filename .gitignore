@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Local storage / DB
+app/storage/
+*.sqlite3
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Bundles and temporary artifacts
+*.zip
+*.tgz
+*.tar.gz
+deploy/tmp/
+deploy/bundles/
+
+# Secrets
+*.pem
+*.key
+*.env
+*.env.*

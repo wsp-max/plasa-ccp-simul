@@ -1,0 +1,2 @@
+# Placeholder for future ad network authorization.
+# Replace this file with publisher account entries when ad slots are enabled.
